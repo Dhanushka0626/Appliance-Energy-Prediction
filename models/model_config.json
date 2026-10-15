@@ -1,0 +1,58 @@
+{
+  "model_file": "trained_model.h5",
+  "seed": 42,
+  "config": {
+    "arch": "LSTM",
+    "units": [
+      64
+    ],
+    "dense": 32,
+    "rnn_act": "tanh",
+    "dense_act": "relu",
+    "dropout": 0.2,
+    "l2": 0.0,
+    "optimizer": "adam",
+    "lr": 0.001,
+    "loss": "mse",
+    "lookback": 12,
+    "batch": 128,
+    "patience": 3,
+    "max_epochs": 100
+  },
+  "features": [
+    "appliances_lag_1",
+    "appliances_rolling_mean_1h",
+    "appliances_lag_2",
+    "appliances_rolling_std_3h",
+    "appliances_lag_3",
+    "hour_sin",
+    "appliances_rolling_mean_3h",
+    "hour_cos",
+    "appliances_lag_6",
+    "appliances_lag_18",
+    "appliances_rolling_std_1h",
+    "appliances_lag_12",
+    "appliances_rolling_mean_24h",
+    "appliances_lag_144"
+  ],
+  "metrics": {
+    "validation": {
+      "MAE (Wh)": 26.063163960579615,
+      "RMSE (Wh)": 58.80462935088592,
+      "MAPE (%)": 24.129686747578912,
+      "R\u00b2": 0.6296913407147443
+    },
+    "test": {
+      "MAE (Wh)": 25.429284928145215,
+      "RMSE (Wh)": 56.963715050541566,
+      "MAPE (%)": 22.439348804347944,
+      "R\u00b2": 0.6084870446816519
+    },
+    "persistence_test": {
+      "MAE (Wh)": 26.650620724600962,
+      "RMSE (Wh)": 66.43763970519394,
+      "MAPE (%)": 21.936115325257834,
+      "R\u00b2": 0.4674285057669483
+    }
+  }
+}
