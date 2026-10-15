@@ -218,3 +218,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Output of the notebook (result tables and a copy of the model)
+notebooks/results/
