@@ -25,13 +25,22 @@ SEED = 42
 # Lags chosen from the autocorrelation analysis (10, 20, 30 min, 1, 2, 3 h, 24 h)
 LAGS = [1, 2, 3, 6, 12, 18, 144]
 
-# Belgian public holidays inside the measurement period (11 Jan - 27 May 2016):
+# Public holidays inside the measurement period (11 Jan - 27 May 2016):
 # Easter Monday, Labour Day, Ascension, Whit Monday
 HOLIDAYS = pd.to_datetime(["2016-03-28", "2016-05-01", "2016-05-05", "2016-05-16"]).date
 
-INDOOR_T = ["T1", "T2", "T3", "T4", "T5", "T7", "T8", "T9"]       # T6 is the outdoor sensor
+INDOOR_T = ["T1", "T2", "T3", "T4", "T5", "T7", "T8", "T9"]       # T6 is left out: it follows the outdoor temperature (mean 7.9 °C, min -6 °C)
 INDOOR_RH = ["RH_1", "RH_2", "RH_3", "RH_4", "RH_5", "RH_7", "RH_8", "RH_9"]
 EXCLUDED = {"date", TARGET_COLUMN, "hour", "day_of_week", "month"}  # sin/cos versions are used instead
+
+# The 14 features chosen by the selection in the notebook (voting + walk-forward feature-group test),
+# in the order produced there: past consumption (lags, rolling statistics) and the time of day.
+SELECTED_FEATURES = [
+    "appliances_lag_1", "appliances_rolling_mean_1h", "appliances_lag_2", "appliances_rolling_std_3h",
+    "appliances_lag_3", "hour_sin", "appliances_rolling_mean_3h", "hour_cos", "appliances_lag_6",
+    "appliances_lag_18", "appliances_rolling_std_1h", "appliances_lag_12", "appliances_rolling_mean_24h",
+    "appliances_lag_144",
+]
 
 OUTDOOR_COLS = ["T6", "RH_6", "T_out", "RH_out", "Press_mm_hg", "Windspeed", "Visibility",
                 "Tdewpoint", "Tout_RHout_interaction", "indoor_outdoor_temp_diff"]
